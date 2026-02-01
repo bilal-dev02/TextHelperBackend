@@ -32,7 +32,6 @@ router.post('/define', async (req, res) => {
     });
     
   } catch (error) {
-    console.error('Define route error:', error);
     return res.status(500).json({ 
       error: 'Failed to get meaning',
       message: error.message 

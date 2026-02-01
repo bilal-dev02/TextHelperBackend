@@ -2,9 +2,10 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import rateLimit from 'express-rate-limit';
-import defineRoute from './routes/define.js';
 
 dotenv.config();
+
+import defineRoute from './routes/define.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -36,7 +37,6 @@ app.get('/', (req, res) => {
 app.use('/api', defineRoute);
 
 app.use((err, req, res, next) => {
-  console.error(err.stack);
   res.status(500).json({ 
     error: 'Something went wrong!',
     message: err.message 
@@ -45,6 +45,5 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-  console.log(`Environment: ${process.env.NODE_ENV}`);
 });
 
